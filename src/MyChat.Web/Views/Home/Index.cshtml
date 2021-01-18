@@ -13,23 +13,35 @@
         </div>
         <div class="col-12 col-md-8">
             <div class="d-flex flex-column bd-highlight mb-3">
-                <div class="chat-messages px-4 py-2 mb-1" >
-                    <ul class="list-unstyled">
+                <div id="chat-messages-div" class="chat-messages px-4 py-2 mb-1">
+                    <ul class="list-unstyled" id="chat-messages-list">
+                        <!--
                         <li class="item-message mt-1 px-2">
-                            <i class="fas fa-user-astronaut"></i> <b>XXyyaa</b> <i>says:</i> Tincidunt integer eu augue augue nunc elit dolor, luctus placerat scelerisque euismod, iaculis eu lacus nunc mi elit.
+                            <div class="d-flex flex-column">
+                                <span><i class="fas fa-user-astronaut"></i> <b>XXyyaa</b> <i>says:</i> Tincidunt integer eu augue augue nunc elit dolor, luctus placerat scelerisque euismod, iaculis eu lacus nunc mi elit.</span>
+                                <span class="text-muted text-sm-right font-10px">2020-01-01 44:00:99</span>
+                            </div>
                         </li>
                         <li class="item-message mt-1 px-2">
-                            <i class="fas fa-user-astronaut"></i> <b>XXyyaa</b> <i>says:</i> Tincidunt integer eu augue augue nunc elit dolor, luctus placerat scelerisque euismod, iaculis eu lacus nunc mi elit.
+                            <div class="d-flex flex-column">
+                                <span><i class="fas fa-user-astronaut"></i> <b>XXyyaa</b> <i>says:</i> Tincidunt integer eu augue augue nunc elit dolor, luctus placerat scelerisque euismod, iaculis eu lacus nunc mi elit.</span>
+                                <span class="text-muted text-sm-right font-10px">2020-01-01 44:00:99</span>
+                            </div>
                         </li>
                         <li class="item-message mt-1 px-2">
-                            <i class="fas fa-user-astronaut"></i> <b>XXyyaa</b> <i>says:</i> Tincidunt integer eu augue augue nunc elit dolor, luctus placerat scelerisque euismod, iaculis eu lacus nunc mi elit.
+                            <div class="d-flex flex-column">
+                                <span><i class="fas fa-user-astronaut"></i> <b>XXyyaa</b> <i>says:</i> Tincidunt integer eu augue augue nunc elit dolor, luctus placerat scelerisque euismod, iaculis eu lacus nunc mi elit.</span>
+                                <span class="text-muted text-sm-right font-10px">2020-01-01 44:00:99</span>
+                            </div>
                         </li>
+                        -->
                     </ul>
                 </div>
                 <div>
-                    <form id="formSendChat">
+                    <form id="formSendChat" autocomplete="off">
                         <div class="input-group">
-                            <textarea class="form-control" placeholder="Write..."></textarea>
+                            <input type="hidden" name="userName" value="@ViewBag.UserName" />
+                            <input type="text" class="form-control" id="message" name="message" placeholder="Write..." />
                             <div class="input-group-append">
                                 <button class="btn btn-large btn-primary">
                                     <i class="fas fa-paper-plane"></i> Send
@@ -43,7 +55,9 @@
 
 
     </div>
-
-   
-
 </div>
+@section Scripts
+{
+    <script src="~/lib/signalr/dist/browser/signalr.min.js"></script>
+    <script src="~/js/chat.js"></script>
+}

@@ -42,6 +42,10 @@ li.item-message {
     border-bottom: 1px solid #7d7b7b
 }
 
+.font-10px {
+    font-size: 10px;
+}
+
 li.item-message:last-child {
     border-bottom: none;
 }
