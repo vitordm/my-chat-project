@@ -20,6 +20,8 @@ namespace MyChat.Web.Controllers
 
         public IActionResult Index()
         {
+            ViewBag.UserName = $"Name_{DateTime.Now.Millisecond}";
+
             return View();
         }
 
