@@ -2,7 +2,48 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="mx-auto">
+    <div class="row">
+        <div class="col-12 col-md-4">
+            <div class="d-flex flex-column bd-highlight mb-3">
+                <div class="p-2 bd-highlight">Flex item 1</div>
+                <div class="p-2 bd-highlight">Flex item 2</div>
+                <div class="p-2 bd-highlight">Flex item 3</div>
+            </div>
+        </div>
+        <div class="col-12 col-md-8">
+            <div class="d-flex flex-column bd-highlight mb-3">
+                <div class="chat-messages px-4 py-2 mb-1" >
+                    <ul class="list-unstyled">
+                        <li class="item-message mt-1 px-2">
+                            <i class="fas fa-user-astronaut"></i> <b>XXyyaa</b> <i>says:</i> Tincidunt integer eu augue augue nunc elit dolor, luctus placerat scelerisque euismod, iaculis eu lacus nunc mi elit.
+                        </li>
+                        <li class="item-message mt-1 px-2">
+                            <i class="fas fa-user-astronaut"></i> <b>XXyyaa</b> <i>says:</i> Tincidunt integer eu augue augue nunc elit dolor, luctus placerat scelerisque euismod, iaculis eu lacus nunc mi elit.
+                        </li>
+                        <li class="item-message mt-1 px-2">
+                            <i class="fas fa-user-astronaut"></i> <b>XXyyaa</b> <i>says:</i> Tincidunt integer eu augue augue nunc elit dolor, luctus placerat scelerisque euismod, iaculis eu lacus nunc mi elit.
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <form id="formSendChat">
+                        <div class="input-group">
+                            <textarea class="form-control" placeholder="Write..."></textarea>
+                            <div class="input-group-append">
+                                <button class="btn btn-large btn-primary">
+                                    <i class="fas fa-paper-plane"></i> Send
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+   
+
 </div>
