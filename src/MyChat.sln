@@ -19,9 +19,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyChat.Domain", "MyChat.Dom
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyChat.Infra.IoC", "MyChat.Infra.IoC\MyChat.Infra.IoC.csproj", "{8CC00C35-0B1D-40FE-903B-FEB0E20C7B64}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyChat.Infra.Crosscutting", "MyChat.Infra.Crosscutting\MyChat.Infra.Crosscutting.csproj", "{33E7C9F3-D0B3-4BCF-B543-36716AFE2ED1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyChat.Infra.Crosscutting", "MyChat.Infra.Crosscutting\MyChat.Infra.Crosscutting.csproj", "{33E7C9F3-D0B3-4BCF-B543-36716AFE2ED1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyChat.Infra.Data", "MyChat.Infra.Data\MyChat.Infra.Data.csproj", "{86795BA9-804F-4B94-8D05-08D66F137F44}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyChat.Infra.Data", "MyChat.Infra.Data\MyChat.Infra.Data.csproj", "{86795BA9-804F-4B94-8D05-08D66F137F44}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyChat.Test", "MyChat.Test\MyChat.Test.csproj", "{D67E129A-4DE1-45B8-A8B1-6959B077F788}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,6 +59,10 @@ Global
 		{86795BA9-804F-4B94-8D05-08D66F137F44}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{86795BA9-804F-4B94-8D05-08D66F137F44}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{86795BA9-804F-4B94-8D05-08D66F137F44}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D67E129A-4DE1-45B8-A8B1-6959B077F788}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D67E129A-4DE1-45B8-A8B1-6959B077F788}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D67E129A-4DE1-45B8-A8B1-6959B077F788}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D67E129A-4DE1-45B8-A8B1-6959B077F788}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
