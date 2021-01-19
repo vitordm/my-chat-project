@@ -26,19 +26,11 @@ namespace MyChat.Infra.Data.Repositories
         }
 
         public async Task<IList<ChatMessage>> FindLastMessagesAsync(int limit, string group)
-        {
-            var query = dbContext.ChatMessages
-                .AsQueryable();
-
-            if (!string.IsNullOrEmpty(group))
-                query = query.Where(cm => cm.ChatGroup == group);
-            else
-                query = query.Where(cm => cm.ChatGroup == null);
-
-
-            return await query.OrderByDescending(cm => cm.CreatedAt)
+            => await dbContext.ChatMessages
+                .AsQueryable()
+                .Where(cm => cm.ChatGroup == group)
+                .OrderByDescending(cm => cm.CreatedAt)
                 .Take(limit)
                 .ToListAsync();
-        }
     }
 }
