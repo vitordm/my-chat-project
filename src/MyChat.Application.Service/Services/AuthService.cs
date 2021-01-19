@@ -2,6 +2,7 @@
 using MyChat.Application.Dto.Requests;
 using MyChat.Application.Service.Contracts;
 using MyChat.Domain.Auth;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace MyChat.Application.Service.Services
@@ -19,6 +20,9 @@ namespace MyChat.Application.Service.Services
 
         public async Task<AppUser> GetUserByUserNameAsync(string userName)
             => await userManager.FindByNameAsync(userName);
+
+        public async Task<AppUser> GetUserByClaimPrincipalAsync(ClaimsPrincipal user)
+            => await userManager.GetUserAsync(user);
 
         public async Task<IdentityResult> RegisterNewUserAsync(RegisterNewUserRequest request)
         {

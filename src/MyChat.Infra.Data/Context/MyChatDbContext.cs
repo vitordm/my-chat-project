@@ -1,15 +1,13 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Design;
 using MyChat.Domain.Auth;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using MyChat.Domain.Entities;
 
 namespace MyChat.Infra.Data.Context
 {
     public class MyChatDbContext : IdentityDbContext<AppUser, AppRole, long>
     {
+        public virtual DbSet<ChatMessage> ChatMessages { get; set; }
 
         public MyChatDbContext(DbContextOptions options) : base(options)
         {

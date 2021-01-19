@@ -71,7 +71,12 @@ namespace MyChat.Web.Controllers
 
         }
 
-
+        public async Task<IActionResult> Logout()
+        {
+            await signInManager.SignOutAsync();
+            HttpContext.Session.Clear();
+            return RedirectToAction(nameof(Login));
+        }
 
 
     }

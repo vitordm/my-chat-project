@@ -10,6 +10,7 @@ namespace MyChat.Application.Dto.Entities
         public string UserName { get; set; }
         public DateTime CreatedAt { get; set; } = DateTime.Now;
         public string Message { get; set; }
+        public string ChatGroup { get; set; }
 
     }
 }

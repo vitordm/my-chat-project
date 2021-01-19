@@ -6,6 +6,8 @@ using MyChat.Application.Service.Contracts;
 using MyChat.Application.Service.Services;
 using MyChat.Domain.Auth;
 using MyChat.Infra.Data.Context;
+using MyChat.Infra.Data.Contracts;
+using MyChat.Infra.Data.Repositories;
 using System;
 
 namespace MyChat.Infra.IoC
@@ -39,6 +41,8 @@ namespace MyChat.Infra.IoC
 
             services.AddServices();
 
+            services.AddRepositories();
+
             return services;
         }
 
@@ -46,6 +50,11 @@ namespace MyChat.Infra.IoC
         {
             services.AddScoped<IChatService, ChatService>();
             services.AddScoped<IAuthService, AuthService>();
+        }
+
+        public static void AddRepositories(this IServiceCollection services)
+        {
+            services.AddScoped<IChatMessageRepository, ChatMessageRepository>();
         }
 
         public static IApplicationBuilder EnsureSeedData(this IApplicationBuilder app, IServiceProvider provider)

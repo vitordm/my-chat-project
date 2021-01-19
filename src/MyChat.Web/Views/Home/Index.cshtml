@@ -1,4 +1,5 @@
-﻿@{
+﻿@model System.Collections.Generic.IList<MyChat.Application.Dto.Entities.ChatMessageDto>
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -6,41 +7,51 @@
     <div class="row">
         <div class="col-12 col-md-4">
             <div class="d-flex flex-column bd-highlight mb-3">
-                <div class="p-2 bd-highlight">Flex item 1</div>
-                <div class="p-2 bd-highlight">Flex item 2</div>
-                <div class="p-2 bd-highlight">Flex item 3</div>
+                <div>
+                    <span id="text-status">
+                        <i class="fas fa-circle text-danger"></i>
+                        Not connected
+                    </span>
+                </div>
+                <hr />
+
+                <h4>Groups</h4>
+                <div class="input-group">
+                    <input type="text" class="form-control" id="new-group-name" placeholder="Join Group" />
+                    <div class="input-group-append">
+                        <button id="btn-join-group" class="btn btn-large btn-primary" >
+                            Join
+                        </button>
+                    </div>
+                </div>
+
+                <div class="mt-2">
+                    <ul class="list-unstyled" id="groups">
+                        <li> <a class="link-groups badge-secondary" data-value="" href="javascript:void(0)">#GENERAL</a> </li>
+                    </ul>
+                </div>
             </div>
         </div>
         <div class="col-12 col-md-8">
             <div class="d-flex flex-column bd-highlight mb-3">
                 <div id="chat-messages-div" class="chat-messages px-4 py-2 mb-1">
                     <ul class="list-unstyled" id="chat-messages-list">
-                        <!--
-                        <li class="item-message mt-1 px-2">
-                            <div class="d-flex flex-column">
-                                <span><i class="fas fa-user-astronaut"></i> <b>XXyyaa</b> <i>says:</i> Tincidunt integer eu augue augue nunc elit dolor, luctus placerat scelerisque euismod, iaculis eu lacus nunc mi elit.</span>
-                                <span class="text-muted text-sm-right font-10px">2020-01-01 44:00:99</span>
-                            </div>
-                        </li>
-                        <li class="item-message mt-1 px-2">
-                            <div class="d-flex flex-column">
-                                <span><i class="fas fa-user-astronaut"></i> <b>XXyyaa</b> <i>says:</i> Tincidunt integer eu augue augue nunc elit dolor, luctus placerat scelerisque euismod, iaculis eu lacus nunc mi elit.</span>
-                                <span class="text-muted text-sm-right font-10px">2020-01-01 44:00:99</span>
-                            </div>
-                        </li>
-                        <li class="item-message mt-1 px-2">
-                            <div class="d-flex flex-column">
-                                <span><i class="fas fa-user-astronaut"></i> <b>XXyyaa</b> <i>says:</i> Tincidunt integer eu augue augue nunc elit dolor, luctus placerat scelerisque euismod, iaculis eu lacus nunc mi elit.</span>
-                                <span class="text-muted text-sm-right font-10px">2020-01-01 44:00:99</span>
-                            </div>
-                        </li>
-                        -->
+                        @foreach (var chatMessage in Model)
+                        {
+                            <li class="item-message mt-1 px-2">
+                                <div class="d-flex flex-column">
+                                    <span><i class="fas fa-user-astronaut"></i> <b>@chatMessage.UserName</b> <i>says:</i> @chatMessage.Message</span>
+                                    <span class="text-muted text-sm-right font-10px">@chatMessage.CreatedAt</span>
+                                </div>
+                            </li>
+                        }
                     </ul>
                 </div>
                 <div>
                     <form id="formSendChat" autocomplete="off">
                         <div class="input-group">
                             <input type="hidden" name="userName" value="@ViewBag.UserName" />
+                            <input type="hidden" id="chatGroup" name="chatGroup" value="" />
                             <input type="text" class="form-control" id="message" name="message" placeholder="Write..." />
                             <div class="input-group-append">
                                 <button class="btn btn-large btn-primary">

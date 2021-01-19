@@ -33,6 +33,71 @@
 
     };
 
+    const changeConnectionStatus = (status) => {
+        const obj = $('#text-status');
+        switch (status) {
+            case 'ON':
+                obj.html(`<span id="text-status">
+                        <i class="fas fa-circle text-success"></i>
+                        Connected
+                    </span>`);
+                break;
+            case 'OFF':
+                obj.html(`<span id="text-status">
+                        <i class="fas fa-circle text-danger"></i>
+                        Connected
+                    </span>`);
+                break;
+            case 'WAITING':
+                obj.html(`<span id="text-status">
+                        <i class="fas fa-circle text-warning"></i>
+                        Connected
+                    </span>`);
+                break;
+        }
+    };
+
+    const bindClickListGroups = () => {
+        $('.link-groups').on('click', (event) => {
+            event.preventDefault();
+
+            if (!allowToSend)
+                return;
+
+            const currentGroup = $('#chatGroup').val();
+
+            if (currentGroup) {
+                connection.invoke("LeaveGroup", currentGroup)
+                    .then(() => { }
+                    )
+                    .catch((err) => {
+                        return console.error(err.toString());
+                    });
+            }
+
+            const objGroupList = $(event.target);
+            const groupValue = objGroupList.attr('data-value');
+
+            if (groupValue) {
+                connection.invoke("JoinGroup", groupValue)
+                    .then(() => {
+
+                        $('#chatGroup').val(groupValue);
+
+                        $('.badge-secondary').removeClass('badge-secondary');
+
+                        objGroupList.addClass('badge-secondary');
+
+                        $('#chat-messages-list').html('');
+                    })
+                    .catch((err) => {
+                        return console.error(err.toString());
+                    });
+            }
+
+        });
+    }
+
     connection.on("ReceiveMessage", (chatMessage) => {
         console.log(chatMessage);
 
@@ -46,9 +111,23 @@
         .then(() => {
             console.info("SignalR is running!");
             allowToSend = true;
+            changeConnectionStatus('ON');
         }).catch((err) => {
             return console.error(err.toString());
         });
+
+    connection.onclose(() => {
+        changeConnectionStatus('OFF');
+        allowToSend = false;
+    });
+
+    connection.onreconnecting(() => {
+        changeConnectionStatus('WAITING');
+    });
+
+    connection.onreconnected(() => {
+        changeConnectionStatus('ON');
+    });
 
 
     $('#formSendChat').on('submit', (event) => {
@@ -62,15 +141,45 @@
 
         console.log("Pre-Send => ", message);
 
-        connection.invoke("SendMessage", message)
-            .then(() => {
-                $('#message').val('');
-            })
-            .catch((err) => {
-                return console.error(err.toString());
-            });
+        if (message.chatGroup) {
+            connection.invoke("SendMessageToGroup", message)
+                .then(() => {
+                    $('#message').val('');
+                })
+                .catch((err) => {
+                    return console.error(err.toString());
+                });
+        } else {
+            connection.invoke("SendMessage", message)
+                .then(() => {
+                    $('#message').val('');
+                })
+                .catch((err) => {
+                    return console.error(err.toString());
+                });
+        }
+
+
 
         return false;
     })
+
+    $('#btn-join-group').on('click', (event) => {
+        event.preventDefault();
+
+        const newGroupName = $('#new-group-name').val();
+        const li = `<li class="mt-1"> <a class="link-groups" data-value="${newGroupName}" href="javascript:void(0)">${newGroupName}</a> </li>`;
+
+        $('#groups').append(li);
+        $('.link-groups').off('click');
+
+        $('#new-group-name').val('');
+
+        bindClickListGroups();
+    });
+
+    bindClickListGroups();
+
+    scrollDownMessages();
 
 })();

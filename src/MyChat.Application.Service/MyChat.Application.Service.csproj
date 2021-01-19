@@ -7,11 +7,13 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.2" />
     <PackageReference Include="Microsoft.Extensions.Identity.Core" Version="5.0.2" />
+    <PackageReference Include="RestSharp" Version="106.11.7" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\MyChat.Application.Dto\MyChat.Application.Dto.csproj" />
     <ProjectReference Include="..\MyChat.Domain\MyChat.Domain.csproj" />
+    <ProjectReference Include="..\MyChat.Infra.Data\MyChat.Infra.Data.csproj" />
   </ItemGroup>
 
 </Project>

@@ -12,5 +12,19 @@ namespace MyChat.Domain.Entities
         public string ChatGroup { get; set; }
 
         public long AppUserId { get; private set; }
+
+        public ChatMessage()
+        {
+
+        }
+
+        public ChatMessage(string userName, DateTime createdAt, string message, string chatGroup, long appUserId)
+        {
+            UserName = userName;
+            CreatedAt = createdAt;
+            Message = message;
+            ChatGroup = chatGroup;
+            AppUserId = appUserId;
+        }
     }
 }
